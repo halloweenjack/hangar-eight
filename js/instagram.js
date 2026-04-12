@@ -1,9 +1,11 @@
-// Instagram Graph API クライアント（Vercel serverless function経由）
+// Instagram Graph API クライアント（instagram-gallery.vercel.app経由）
 class InstagramFeed {
   constructor(config) {
     this.containerId = config.containerId || 'instafeed';
     this.limit = config.limit || 6;
+    this.account = config.account || 'hangar_eight';
     this.fallbackImages = config.fallbackImages || [];
+    this.apiBase = 'https://instagram-gallery.vercel.app/api/instagram';
   }
 
   async fetchFeed() {
@@ -11,7 +13,7 @@ class InstagramFeed {
     if (!container) return;
 
     try {
-      const response = await fetch(`/api/instagram?limit=${this.limit}`);
+      const response = await fetch(`${this.apiBase}?account=${this.account}&limit=${this.limit}`);
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
