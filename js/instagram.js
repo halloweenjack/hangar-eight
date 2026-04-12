@@ -26,7 +26,7 @@ class InstagramFeed {
         return;
       }
 
-      this.render(items);
+      this.render(items.slice(0, this.limit));
     } catch (error) {
       console.error('Instagram feed error:', error);
       this.showFallback();
