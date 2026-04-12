@@ -1,0 +1,981 @@
+
+#hero {
+  position: relative;
+  height: 100vh;
+  background: white;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 1s, transform 1s ease;
+  z-index: -1;
+}
+
+#hero.fade-in {
+  background: url('../img/top_02.jpg') no-repeat center center;
+  background-size: cover;
+  opacity: 1;
+  transform: scale(1);
+}
+
+span.arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(0. -50%);
+  width: 40px;
+  height: 40px;
+  background: url(icons/ic_CaretDown_fill.svg) no-repeat center center;
+  background-size: cover;
+  animation: blink 1s ease-in-out infinite;
+}
+
+span.arrow.invisible {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+h2 {
+  display: inline-block;
+  width: fit-content;
+  margin: 6vw auto 3vw;
+  text-align: center;
+  font-size: 2.8rem;
+  line-height: 2.8rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background-image: linear-gradient(to right, var(--hungerBlue) 33%, white 33% 66%, var(--hungerRed) 66%);
+}
+
+h2 span {
+  font-size: 2rem;
+  color:#777
+}
+
+h2 img {
+  height: 20px;
+}
+
+p.head-copy {
+  width: 80%;
+  font-size: 1.6vw;
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 2em;
+  text-align: center;
+  padding: 0;
+  margin: 0 auto 3vw;
+}
+
+#info {
+  width: 100%;
+  text-align: center;
+}
+
+
+.img-logo-black {
+  display: block;
+  width: 15rem;
+  height: 15rem;
+  margin: 0 auto 0;
+  background: url(../img/logo_black.svg) no-repeat center center;
+  background-size: contain;
+}
+
+.iframe-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#instagram-iframe {
+  width: 100%;
+  border: none;
+  transition: height 0.3s ease;
+  overflow: hidden;
+}
+
+.loader {
+  display: none;
+  position: absolute;
+  top: -20px;
+  left: calc(50% - 25px);
+  z-index: 10;
+}
+
+.loader.active {
+  display: block;
+}
+
+.card-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:20px;
+  padding: 20px;
+  margin: 0 auto 40px;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1260px;
+  position: relative;
+}
+
+/* タブレット表示 (768px - 1024px) */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .card-box {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+  }
+}
+
+.card {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 0;
+}
+
+.card .photo a {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+.card .photo a::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(icons/ic_InstagramLogo.svg) no-repeat center center rgba(0, 0, 0, 0.5);
+  background-size: 35px 35px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: 0.7s;
+}
+
+.card .photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 1;
+  background: #aaa;
+  transition: 0.9s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.card .photo a:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card .photo a:hover img {
+  transform: scale(1.1);
+}
+
+#info .card p.date {
+  display: block;
+  width: 100%;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1em;
+  margin: 0;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+#info .card p.text {
+  display: block;
+  width: 100%;
+  font-size: clamp(1.2rem, 2.2vw, 1.4rem);
+  line-height: 1.5em;
+  margin: 0;
+  padding: 0 0.8rem 1rem 0.8rem;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-frame {
+  width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  margin: 60px auto 40px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2c3e50;
+  width: 200px;
+  margin: 0px auto 0px;
+  padding: 10px 0;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.8rem;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.btn-insta {
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  background: linear-gradient(135deg, #2c3e50 0%, #2c3e50 70%) no-repeat,
+  radial-gradient(circle at 23px -18px, #2c3e50 10%, #2c3e50 55%, #2c3e50 70%);
+}
+
+.btn-insta::before {
+  content: "";
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  background: url(icons/ic_InstagramLogo_fill.svg) no-repeat center center;
+  background-size: cover;
+  margin-right: 0.8em;
+}
+
+.btn-insta:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background: linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat,
+  radial-gradient(circle at 23px -18px, #ffdb2c 10%, rgba(255, 105, 34, 0.65) 55%, rgba(255, 88, 96, 0) 70%);
+}
+
+.btn-fb {
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  background: #2c3e50;
+}
+
+.btn-fb::before {
+  content: "";
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  background: url(icons/ic_FacebookLogo.svg) no-repeat center center;
+  background-size: cover;
+  margin-right: 0.8em;
+}
+
+.btn-fb:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background: #0866FF;
+}
+
+p.contact {
+  font-size: 1.6rem;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+p.contact a {
+  color: #0866FF;
+}
+
+#cal {
+  width: 100%;
+  margin: 0px auto 0px;
+  padding: 0 0 60px 0;
+  background: #fff;
+  text-align: center;
+}
+
+#calendar {
+  width: calc(100% - 200px);
+  max-width: 1260px;
+  margin: 30px auto 0;
+}
+
+.fc .fc-view-harness {
+  background: #fff;
+}
+
+h2.fc-toolbar-title::after {
+  height: 0;
+}
+
+.inner-wrapper {
+  display: block;
+  width: 100%;
+  max-width: 1260px;
+  background: transparent;
+  margin: 0 auto 0;
+  padding: 0 20px;
+}
+
+#service {
+  width: 100%;
+  background-color: var(--bg-color1);
+  text-align: center;
+  margin-inline: auto;
+}
+
+.service-box {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+  gap: 30px;
+  margin: 30px auto 60px;
+  grid-auto-rows: 90px 1fr;
+}
+
+.service-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
+  align-items: center;
+  justify-content: center;
+  padding: 0 60px 0 60px;
+  width: 100%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.service-card img {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: brightness(0.5);
+  transition: 0.5s;
+  object-fit: cover;
+}
+
+.service-card:hover img {
+  filter: brightness(0.95);
+  transform: scale(1.05);
+}
+
+
+.service-card h3 {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: clamp(2rem, 2vw, 2.5rem);
+  font-weight: 600;
+  z-index: 2;
+  line-height: 1em;
+}
+
+.service-card h3 span {
+  font-size: clamp(1.5rem, 1.5vw, 2rem);
+}
+
+.service-card p {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: clamp(1.5rem, 1.5vw, 2rem);
+  font-weight: 300;
+  margin: 0 0 4rem 0;
+  z-index: 2;
+}
+
+#about {
+  width: 100%;
+  text-align: center;
+  margin: 0px auto 0px;
+  padding-bottom: 60px;
+  position: relative;
+  background-color: var(--bg-color0);
+}
+
+.about-box-wrapper {
+  width: 100%;
+  display: grid;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8rem;
+  padding: 70px 20px 50px 20px;
+  margin: 60px auto 0;
+  width: 100%;
+  max-width: 1260px;
+  background: url(../img/top_01.jpg) no-repeat center center;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+@keyframes scroll-reveal {
+  from {
+    transform: scale(1.2)
+  }
+  to {
+    transform: scale(1)
+  }
+}
+
+.about-box {
+  width: 100%;
+  margin: 0 auto 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10px;
+  padding: 2vw;
+  /* background: rgba(44, 62, 80, 0.5); */
+  background: rgba(200, 200, 220, 0.8);
+  backdrop-filter: blur(5px);
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#about h5 {
+  margin: 0;
+  padding: 6px 18px;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 300;
+  text-align: center;
+  position: absolute;
+  top: -25px;
+  left: 3%;
+  background: #333;
+  border: solid 1px #333;
+  color: #fff;
+}
+
+#about h5.food::before {
+  display: inline-block;
+  vertical-align: middle;
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: url(icons/ic_BowlFood.svg) no-repeat left -2px;
+  background-size: cover;
+  margin-right: 0.2em;
+}
+
+#about h5.event::before {
+  display: inline-block;
+  vertical-align: middle;
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: url(icons/ic_Guitar.svg) no-repeat left -2px;
+  background-size: cover;
+  margin-right: 0.2em;
+}
+
+#about h5.rental::before {
+  display: inline-block;
+  vertical-align: middle;
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: url(icons/ic_Cheers.svg) no-repeat left -2px;
+  background-size: cover;
+  margin-right: 0.2em;
+}
+
+#about h5.camp::before {
+  display: inline-block;
+  vertical-align: middle;
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: url(icons/ic_Tent.svg) no-repeat left -2px;
+  background-size: cover;
+  margin-right: 0.2em;
+}
+
+#about h5.studio::before {
+  display: inline-block;
+  vertical-align: middle;
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: url(icons/ic_VideoConference.svg) no-repeat left -2px;
+  background-size: cover;
+  margin-right: 0.2em;
+}
+
+#about .about-box p {
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.6em;
+  margin: 0;
+  padding: 0;
+}
+
+#about .about-box p span {
+  color: #333;
+}
+
+
+#about .about-box p.title {
+  margin: 1em 0 0.5em 0;
+  padding: 0;
+  font-size: clamp(18px, 2vw, 20px);
+  font-weight: 600;
+}
+
+#access {
+  width: 100%;
+  background-color: var(--bg-color0);
+  text-align: center;
+  margin: 0 auto 0;
+}
+
+.btn-gmap {
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  background: linear-gradient(135deg, #2c3e50 0%, #2c3e50 70%) no-repeat,
+  radial-gradient(circle at 23px -18px, #2c3e50 10%, #2c3e50 55%, #2c3e50 70%);
+}
+
+.btn-gmap::before {
+  content: "";
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  background: url(icons/ic_MapPin.svg) no-repeat center center;
+  background-size: cover;
+  margin-right: 0.8em;
+}
+
+.btn-gmap:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background: linear-gradient(135deg, #1A73E8 0%, #1A73E8 25%, #EA4335 25%, #EA4335 50%, #FBBC04 50%, #FBBC04 75%, #34A853 75%) no-repeat
+}
+
+.access-list {
+  width: 100%;
+  max-width: 1260px;
+  margin: 50px auto 20px;
+  text-align: left;
+  padding: 20px;
+}
+
+.access-list p {
+  font-size: 1.5rem;
+  line-height: 1.75em;
+  margin: 0 0 5rem 0;
+  margin-top: 3.5rem;
+}
+
+.access-list p span {
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+}
+
+h4{
+  padding: 0 0 1.0rem 0;
+  display: inline-block;
+  width: 100%;
+  margin: 0 auto 0;
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background-image: linear-gradient(to right, #aaa 33%, #eee 33% 100%);
+}
+
+h4.ic-car::before {
+  display: inline-flex;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  content: "";
+  vertical-align: middle;
+  background: url(icons/ic_Car.svg) no-repeat left -2px ;
+  background-size: 2.5rem 2.5rem;
+  padding-right: 1.7em;
+}
+
+h4.ic-train::before {
+  display: inline-flex;
+  align-items: center;
+  width: 2.7rem;
+  height: 2.5rem;
+  content: "";
+  vertical-align: middle;
+  background: url(icons/ic_Tram.svg) no-repeat left -1px ;
+  background-size: 2.4rem 2.4rem;
+  padding-right: 1.7em;
+}
+
+h4.ic-bus::before {
+  display: inline-flex;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  content: "";
+  vertical-align: middle;
+  background: url(icons/ic_Bus.svg) no-repeat left -1px ;
+  background-size: 2.5rem 2.5rem;
+  padding-right: 1.7em;
+}
+
+h4.ic-ship::before {
+  display: inline-flex;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  content: "";
+  vertical-align: middle;
+  background: url(icons/ic_Boat.svg) no-repeat left -1px ;
+  background-size: 2.5rem 2.5rem;
+  padding-right: 1.7em;
+}
+
+.map-wrapper {
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 600px;
+}
+
+button {
+  padding: 0;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background: none
+}
+
+button {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2px 4px;
+  border: solid 1px #fff;
+  font-size: 11px;
+  font-family: SF Pro JP, SF Pro Text, SF Pro Icons, Hiragino Kaku Gothic Pro, ヒラギノ角ゴ Pro W3, メイリオ, Meiryo, ＭＳ Ｐゴシック, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: black;
+  border-radius: 3px;
+}
+
+#toggleRotationButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  width: 90px;
+}
+
+#resetMapButton {
+  position: absolute;
+  top: 20px;
+  left: 115px;
+  cursor: pointer;
+  width: 90px;
+}
+
+#toggleStyleButton {
+  position: absolute;
+  top: 20px;
+  left: 210px;
+  cursor: pointer;
+  width: 90px;
+}
+
+.mapboxgl-marker {
+  cursor: pointer;
+}
+.mapboxgl-popup-close-button {
+  outline: none;
+}
+
+@media screen and (max-width: 768px) {
+
+  #calendar {
+    width: calc(100% - 40px);
+  } 
+
+}
+
+
+/* スマートフォン表示 (480px以下) */
+@media screen and (max-width: 480px) {
+
+  h2 {
+    margin: 6vw auto 6vw;
+  }
+
+  .card-box {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  #info .card p.text {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+    line-height: 1.4em;
+  }
+}
+
+/* 中サイズスマートフォン表示 (481px - 768px) */
+@media screen and (max-width: 768px) and (min-width: 481px) {
+  .card-box {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .btn-frame {
+    width: 300px;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  #calendar {
+    width: calc(100% - 40px);
+  }
+
+
+  .service-box {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 30px auto 30px;
+    grid-auto-rows: 70px 1fr;
+  }
+
+  .service-card {
+    padding: 0 20px 0 20px
+  }
+
+  .service-card h3 {
+    font-size: 2.5rem;
+    /* font-size: clamp(2rem, 2vw, 2.5rem); */
+  }
+  
+  .service-card p {
+    font-size: 1.8rem;
+    /* font-size: clamp(1.5rem, 1.5vw, 2rem); */
+  }
+
+    
+
+  #about h5 {
+    padding: 3px 6px;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #about .about-box p.title {
+    font-size: 1.6rem;
+  }
+
+  #about .about-box p {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+.gallery {
+  display: grid;
+  gap: 24px;
+  margin-top: 10px;
+}
+
+/* PC: 3x3 grid */
+@media (min-width: 1025px) {
+  .gallery {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1200px;
+      margin: 10px auto 0;
+  }
+  .instagram-post:nth-child(n+10) {
+      display: none;
+  }
+}
+
+/* Tablet: 2x3 grid */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gallery {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 800px;
+      margin: 10px auto 0;
+      gap: 20px;
+  }
+  .instagram-post:nth-child(n+7) {
+      display: none;
+  }
+}
+
+/* Mobile: 1x6 grid */
+@media (max-width: 768px) {
+  .gallery {
+      grid-template-columns: 1fr;
+      gap: 16px;
+  }
+  .container {
+      padding: 0 10px;
+  }
+  body {
+      padding: 5px;
+  }
+  .instagram-post:nth-child(n+7) {
+      display: none;
+  }
+}
+.instagram-post {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  position: relative;
+}
+
+.instagram-post:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.media-container {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.media-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #f8f9fa;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.camera-icon {
+  width: 48px;
+  height: 48px;
+  opacity: 0.3;
+}
+.date-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 3;
+  backdrop-filter: blur(4px);
+}
+.instagram-post:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+.instagram-post img, .instagram-post video {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transition: transform 0.3s ease, opacity 0.5s ease;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+}
+.instagram-post img.loaded, .instagram-post video.loaded {
+  opacity: 1;
+}
+.post-caption {
+  padding: 12px 16px 8px 16px;
+  color: #2c3e50;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+.post-meta {
+  padding: 0 16px 12px 16px;
+  font-size: 12px;
+  color: #7f8c8d;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.media-type-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.like-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #e1306c;
+  font-weight: 600;
+  font-size: 13px;
+}
+.like-icon {
+  width: 16px;
+  height: 16px;
+  fill: #e1306c;
+}
+.error {
+  text-align: center;
+  padding: 50px;
+  color: #e74c3c;
+  background: #fff;
+  border-radius: 8px;
+  margin: 20px 0;
+}
