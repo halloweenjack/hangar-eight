@@ -245,20 +245,16 @@
   </footer>
 
   <script src="js/map.js"></script>
-  <script src="js/instagram-rss.js"></script>
+  <script src="js/instagram.js"></script>
   <script src="js/main.js"></script>
   <script>
-    // Instagram RSS Feed設定
-    const instagramFeed = new InstagramRSSFeed({
-      username: 'hangar_eight', // Instagramユーザーネーム
+    const instagramFeed = new InstagramFeed({
       containerId: 'instafeed',
-      // limitは自動的に6件に設定される
+      limit: 6,
       fallbackImages: fallbackInstagramImages
     });
 
-    // ページ読み込み時の処理
     document.addEventListener('DOMContentLoaded', function() {
-      // RSSフィードの取得
       instagramFeed.fetchFeed();
     });
   </script>
