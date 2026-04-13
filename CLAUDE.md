@@ -92,11 +92,24 @@ Instagram posts are fetched via a **shared proxy service** at `instagram-gallery
 - Japanese web font integration (Noto Serif JP)
 - Fade-in and slide-in animation classes (triggered via scroll position)
 
+## Google Calendar Integration
+
+Events are pulled from a **public Google Calendar** and rendered via FullCalendar. All configuration is in `main.js`:
+
+- **Calendar ID:** `e1a4f31f4259b98dd48dc06d59fc88e1e14a39fc7d909dfb8b3127544777777d@group.calendar.google.com`
+- **API Key:** `AIzaSyAX9F6qCXVIeiatFQ1RXE7NAmqroLkb2JQ` (public, read-only)
+- **View:** Month grid (`dayGridMonth`), week starts Monday (`firstDay: 1`)
+- **Interaction:** Event clicks are disabled (display-only); event titles shown via Tippy.js tooltip on hover
+
+To add/edit events, update the Google Calendar directly — changes appear on the site after next page load. The calendar must remain **public** (share setting: "Make available to public") for the API key to read it.
+
+To change to a different calendar: update `googleCalendarId` in `main.js:17`. The API key can be regenerated in Google Cloud Console (project must have Calendar API enabled, key restricted to HTTP referrer `hangar-eight.jp`).
+
 ## API Keys and Configuration
 
 All embedded keys are **public-facing** (designed for client-side use):
-- **Google Calendar API key** (main.js) - public key, read-only calendar
-- **Mapbox access token** (map.js) - `pk.*` public token
+- **Google Calendar API key** (main.js:15) - public key, read-only calendar
+- **Mapbox access token** (map.js:1) - `pk.*` public token
 - **No Instagram secrets** - handled server-side by `instagram-gallery.vercel.app`
 
 The Instagram `client_secret` issue from the original codebase has been resolved — the file containing it was removed and the secret was rotated in Meta Developer Console.
