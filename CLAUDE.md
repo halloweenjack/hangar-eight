@@ -92,6 +92,26 @@ Instagram posts are fetched via a **shared proxy service** at `instagram-gallery
 - Japanese web font integration (Noto Serif JP)
 - Fade-in and slide-in animation classes (triggered via scroll position)
 
+## Mapbox Integration
+
+3D satellite map in the Access section (`#map`). All configuration is in `map.js`:
+
+- **Access Token:** `pk.eyJ1...` (public `pk.*` token, map.js:1) — safe for client-side
+- **Map Style:** `mapbox://styles/mapbox/satellite-v9` (satellite imagery)
+  - Toggleable to `mapbox://styles/mapbox/streets-v11` via the "Toggle Style" button
+- **Terrain:** 3D elevation via `mapbox.terrain-rgb` source, 1.5× exaggeration
+- **Markers (2 locations):**
+  - `[139.95629641, 35.14061783]` — Hangar Eight / Espace Hangar / Camp david
+  - `[139.96578460, 35.13499042]` — Automobile club de Monaca / Studio Kougai / atelier SiFo
+- **Camera:** zoom 14.5, pitch 60°, bearing 100°, centered on midpoint of the two markers
+- **Interaction:** disabled by default (`interactive: false`); automatic rotation at ~2°/sec
+- **Controls:** "Stop Rotation" / "Reset Map" / "Toggle Style" buttons
+  - Stopping rotation enables pan/zoom; restarting disables them
+
+**Known issue:** `setStyle()` does not re-add the terrain source, so 3D terrain is lost after toggling style. Fix would require re-adding the `mapbox-dem` source on `style.load`.
+
+To change the access token: update `mapboxgl.accessToken` at the top of `map.js`. Tokens can be regenerated at mapbox.com/account/access-tokens. For production, restrict the token to URL `hangar-eight.jp` under the token settings.
+
 ## Google Calendar Integration
 
 Events are pulled from a **public Google Calendar** and rendered via FullCalendar. All configuration is in `main.js`:
